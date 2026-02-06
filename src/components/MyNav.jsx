@@ -16,17 +16,13 @@ const MyNav = function () {
         {/* Bottone hamburger che appare sotto lg */}
         <Navbar.Toggle aria-controls="main-nav" />
 
-        {/* Contenuto che si apre/chiude con l’hamburger */}
-        <Navbar.Collapse id="main-nav">
-          {/* Link a sinistra (me-auto = spinge tutto il resto a destra) */}
-          <Nav className="me-auto small">
-            <Nav.Link href="#home" className="fw-bold active">
-              Home
-            </Nav.Link>
-            <Nav.Link href="#tvshows">TV Shows</Nav.Link>
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#tv-shows">TV Shows</Nav.Link>
             <Nav.Link href="#movies">Movies</Nav.Link>
-            <Nav.Link href="#recent">Recently Added</Nav.Link>
-            <Nav.Link href="#mylist">My List</Nav.Link>
+            <Nav.Link href="#recently-added">Recently Added</Nav.Link>
+            <Nav.Link href="#my-list">My List</Nav.Link>
           </Nav>
 
           {/* Icone a destra */}
