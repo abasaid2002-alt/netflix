@@ -1,30 +1,33 @@
-const MovieCard = (props) => {
+import Card from "react-bootstrap/Card"
+import { Link } from "react-router-dom"
+
+export default function MovieCard({ movie }) {
+  // qui scelgo il poster
+  const poster = movie.Poster && movie.Poster !== "N/A" ? movie.Poster : "https://placehold.co/300x450?text=No+Poster"
+
   return (
-    <img
-      // poster che arriva dall’API
-      src={props.movie.Poster}
-      alt={props.movie.Title}
-      // bootstrap: immagine responsive, larga quanto la colonna, angoli arrotondati
-      className="img-fluid w-100 rounded"
-      style={{
-        // altezza fissa così tutte le card sono uguali
-        height: "250px",
-        // contain = non lo taglia
-        objectFit: "contain",
-        // sfondo per “riempire” lo spazio vuoto quando l’immagine non riempie tutto
-        backgroundColor: "#212529",
-        // bordo leggero per staccare dal background
-        border: "1px solid rgba(255,255,255,0.08)",
-        // animazione quando passo con il mouse sopra le card
-        transition: "transform 0.5s",
-        cursor: "pointer",
-      }}
-      // quando passo col mouse sopra, ingrandisco leggermente l’immagine
-      onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
-      // quando tolgo il mouse, torno alla dimensione normale
-      onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
-    />
+    // qui rendo tutta la card cliccabile
+    <Card as={Link} to={`/movie-details/${movie.imdbID}`} bg="dark" text="light" className="text-decoration-none h-100 border-secondary">
+      <Card.Img
+        src={poster}
+        alt={movie.Title}
+        className="img-fluid w-100 rounded"
+        style={{
+          height: "200px", // qui la faccio più piccola
+          objectFit: "contain",
+          backgroundColor: "#212529",
+          border: "1px solid rgba(255,255,255,0.08)",
+          transition: "transform 0.5s",
+          cursor: "pointer",
+        }}
+        // qui faccio hover
+        onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
+        onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+      />
+
+      <Card.Body className="p-2">
+        <Card.Title className="fs-6 m-0 text-truncate">{movie.Title}</Card.Title>
+      </Card.Body>
+    </Card>
   )
 }
-
-export default MovieCard
